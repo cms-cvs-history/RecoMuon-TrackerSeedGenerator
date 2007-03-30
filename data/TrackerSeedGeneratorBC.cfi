@@ -1,0 +1,26 @@
+PSet SeedGeneratorParameters = {
+
+  string ComponentName = "TrackerSeedGeneratorBC"
+
+          untracked bool performMuonIntegrityMonitor = false
+            string Prop = "null"
+
+            //for TrackerSeedGenerator
+          string UpdatorPropagator = "SteppingHelixPropagatorOpposite"
+          string RSPropagator = "SteppingHelixPropagatorAny"
+          double maxRoadChi2 = 40.0
+          double ErrorRescaleFactor = 1.0
+          int32 SeedOption = 2
+            int32 Direction = 0
+            int32 MaxSeeds = 10
+            string HitProducer = "siPixelRecHits"
+
+            //for CombinatorialSeedGneratorFromPixel
+            // -- also called from RegionalPixelSeedGeneratorFromTrk-EDProducer
+            double ptMin = 1.0
+          double originZPosition = 0.0
+            double originRadius = 0.2
+            double originHalfLength = 15.0
+            string TTRHBuilder =  "WithTrackAngle" # SeedFromConsecutiveHits
+} 
+
