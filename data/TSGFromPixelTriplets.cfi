@@ -5,8 +5,9 @@ PSet SeedGeneratorParameters = {
   string TTRHBuilder        =  "WithTrackAngle"
 
   PSet OrderedHitsFactoryPSet = {
-    string ComponentName = "PixelTripletHLTGenerator"
+    string ComponentName = "StandardHitTripletGenerator"
     include "RecoTracker/TkSeedingLayers/data/PixelLayerTriplets.cfi"
+    include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi" 
   }
 
 } 
