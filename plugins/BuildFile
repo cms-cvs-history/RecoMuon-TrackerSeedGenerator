@@ -1,4 +1,0 @@
-<use name=RecoMuon/TrackerSeedGenerator>
-<library file="*.cc" name=RecoMuonTrackerSeedGeneratorPlugins>
-      <flags EDM_PLUGIN=1>
-</library>
