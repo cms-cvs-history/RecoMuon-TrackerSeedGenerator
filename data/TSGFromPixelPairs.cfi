@@ -6,7 +6,7 @@ PSet SeedGeneratorParameters = {
 
   PSet OrderedHitsFactoryPSet = {
     string ComponentName = "StandardHitPairGenerator"
-    include "RecoTracker/TkSeedingLayers/data/PixelLayerPairs.cfi" 
+    string SeedingLayers = "PixelLayerPairs"
   }
 } 
 

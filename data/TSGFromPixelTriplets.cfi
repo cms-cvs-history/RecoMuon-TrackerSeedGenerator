@@ -1,3 +1,4 @@
+
 PSet SeedGeneratorParameters = {
 
   string ComponentName = "TSGFromOrderedHits"
@@ -6,7 +7,7 @@ PSet SeedGeneratorParameters = {
 
   PSet OrderedHitsFactoryPSet = {
     string ComponentName = "StandardHitTripletGenerator"
-    include "RecoTracker/TkSeedingLayers/data/PixelLayerTriplets.cfi"
+    string SeedingLayers = "PixelLayerTriplets"
     include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi" 
   }
 
