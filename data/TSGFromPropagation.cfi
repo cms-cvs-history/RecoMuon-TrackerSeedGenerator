@@ -6,9 +6,15 @@ PSet SeedGeneratorParameters = {
     
     using MuonUpdatorAtVertex
 
-    string Propagator = "SmartPropagatorOpposite"
+    string Propagator = "SmartPropagatorAnyOpposite"
 
     double MaxChi2 = 200.0
+
+    untracked int32 MaxSeeds = 4
+
+    untracked double ErrorReset = 100.0
+
+    untracked bool ApplyVertexConstraint = true
 
 } 
 
