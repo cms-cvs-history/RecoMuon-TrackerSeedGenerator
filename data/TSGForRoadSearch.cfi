@@ -7,6 +7,7 @@ PSet SeedGeneratorParameters = {
                 #2 new code outside-out
     uint32 option = 0
     bool copyMuonRecHit = false
+    bool manySeeds = false
     double maxChi2 = 40.0
     string propagatorName = "SteppingHelixPropagatorAlong"
     string propagatorCompatibleName = "SteppingHelixPropagatorAny"
