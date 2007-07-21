@@ -8,13 +8,15 @@ PSet SeedGeneratorParameters = {
 
     string Propagator = "SmartPropagatorAnyOpposite"
 
-    double MaxChi2 = 200.0
+    double MaxChi2 = 30.0
 
     untracked int32 MaxSeeds = 4
 
     untracked double ErrorReset = 100.0
 
     untracked bool ApplyVertexConstraint = true
+
+    untracked bool SkipFirstLayer = true 
 
 } 
 
