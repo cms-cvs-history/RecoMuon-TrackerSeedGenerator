@@ -1,0 +1,27 @@
+  include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
+  include "Geometry/CMSCommonData/data/cmsIdealGeometryXML.cfi"
+
+  include "Geometry/TrackerGeometryBuilder/data/trackerGeometry.cfi"
+  include "Geometry/TrackerNumberingBuilder/data/trackerNumberingGeometry.cfi"
+  include "RecoTracker/GeometryESProducer/data/TrackerRecoGeometryESProducer.cfi"
+
+  include "RecoLocalTracker/SiStripRecHitConverter/data/StripCPEfromTrackAngle.cfi"
+  include "RecoLocalTracker/SiStripRecHitConverter/data/SiStripRecHitMatcher.cfi"
+  include "RecoLocalTracker/SiPixelRecHits/data/PixelCPEParmError.cfi"
+  include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
+  include "RecoTracker/MeasurementDet/data/MeasurementTrackerESProducer.cfi"
+  include "TrackingTools/MaterialEffects/data/MaterialPropagator.cfi"
+  include "RecoLocalTracker/SiStripRecHitConverter/data/StripCPE.cfi"
+  include "CalibTracker/SiStripLorentzAngle/data/SiStripLAFakeESSource.cfi"
+
+  include "Configuration/StandardSequences/data/L1Emulator.cff"
+
+  include "RecoTracker/TkSeedingLayers/data/PixelLayerPairs.cfi"
+  include "RecoMuon/TrackerSeedGenerator/data/SeedsFromL1Muon.cfi"
+
+  include "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
+es_module myTTRHBuilderWithoutAngleSeedsFromL1Muon
+    = ttrhbwr from "RecoTracker/TransientTrackingRecHit/data/TransientTrackingRecHitBuilder.cfi"
+replace myTTRHBuilderWithoutAngleSeedsFromL1Muon.StripCPE = "Fake"
+replace myTTRHBuilderWithoutAngleSeedsFromL1Muon.ComponentName = "PixelTTRHBuilderWithoutAngleSeedsFromL1Muon"
+
