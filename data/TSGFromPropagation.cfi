@@ -18,5 +18,9 @@ PSet SeedGeneratorParameters = {
 
     untracked bool SkipFirstLayer = true 
 
+    bool UseSecondMeasurements = false
+ 
+    bool UseMuonState = true
+
 } 
 
