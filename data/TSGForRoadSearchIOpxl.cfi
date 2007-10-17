@@ -13,4 +13,6 @@ PSet SeedGeneratorParameters = {
     double maxChi2 = 40.0
     string propagatorName = "SteppingHelixPropagatorAlong"
     string propagatorCompatibleName = "SteppingHelixPropagatorAny"
+
+    PSet errorMatrixPset ={}
 }
