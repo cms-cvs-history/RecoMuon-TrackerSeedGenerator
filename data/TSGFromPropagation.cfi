@@ -20,7 +20,7 @@ PSet SeedGeneratorParameters = {
 
     bool UseSecondMeasurements = false
  
-    bool UseMuonState = true
+    bool UseMuonState = false
 
 } 
 
