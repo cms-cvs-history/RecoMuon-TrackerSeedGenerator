@@ -6,7 +6,7 @@ PSet SeedGeneratorParameters = {
 
     double MaxChi2 = 30.0
 
-    untracked int32 MaxSeeds = 4
+    double ErrorRescaling = 10.0
 
     bool UseSecondMeasurements = false
 
