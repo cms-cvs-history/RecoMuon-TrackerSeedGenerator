@@ -1,0 +1,48 @@
+PSet TSGFromPixelPairs = {
+
+  string ComponentName = "TSGFromOrderedHits"
+
+  string TTRHBuilder        =  "WithTrackAngle"
+
+  PSet OrderedHitsFactoryPSet = {
+    string ComponentName = "StandardHitPairGenerator"
+    string SeedingLayers = "PixelLayerPairs"
+  }
+}
+
+PSet TSGForRoadSearchOI = {
+    string ComponentName = "TSGForRoadSearch" 
+    uint32 option = 3
+    bool copyMuonRecHit = false
+    bool manySeeds = false
+    double maxChi2 = 40.0
+    string propagatorName = "SteppingHelixPropagatorAlong"
+    string propagatorCompatibleName = "SteppingHelixPropagatorAny"
+
+    PSet errorMatrixPset ={}
+}
+
+PSet TSGForRoadSearchIOpxl = {
+    string ComponentName = "TSGForRoadSearch" 
+    uint32 option = 4
+    bool copyMuonRecHit = false
+    bool manySeeds = false
+    double maxChi2 = 40.0
+    string propagatorName = "SteppingHelixPropagatorAlong"
+    string propagatorCompatibleName = "SteppingHelixPropagatorAny"
+
+    PSet errorMatrixPset ={}
+}
+
+PSet TSGFromPropagation = {
+    
+    string ComponentName = "TSGFromPropagation"
+    
+    string Propagator = "SmartPropagatorAnyOpposite"
+
+    double MaxChi2 = 30.0
+
+    double ErrorRescaling = 10.0
+
+    bool UseSecondMeasurements = false
+}
