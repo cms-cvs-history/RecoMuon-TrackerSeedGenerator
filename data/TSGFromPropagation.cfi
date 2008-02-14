@@ -2,8 +2,6 @@ PSet SeedGeneratorParameters = {
     
     string ComponentName = "TSGFromPropagation"
 
-    string StateOnTrackerBoundOutPropagator = "SmartPropagatorAny"	    
-
     string Propagator = "SmartPropagatorAnyOpposite"
 
     double MaxChi2 = 30.0
