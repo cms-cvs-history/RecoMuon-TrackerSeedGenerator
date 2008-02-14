@@ -1,0 +1,7 @@
+module hltL3TrajectorySeedFromL1 = TSGFromL1Muon {
+ InputTag L1MuonLabel = l1extraParticles
+
+ PSet OrderedHitsFactoryPSet ={}
+
+ PSet FitterPSet ={}
+}
