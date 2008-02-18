@@ -1,3 +1,28 @@
+PSet TSGFromMixedPairs = {
+
+  string ComponentName = "TSGFromOrderedHits"
+
+  string TTRHBuilder        =  "WithTrackAngle"
+
+  PSet OrderedHitsFactoryPSet = {
+    string ComponentName = "StandardHitPairGenerator"
+    string SeedingLayers = "MixedLayerPairs"
+  }
+}
+
+PSet TSGFromPixelTriplets = {
+
+  string ComponentName = "TSGFromOrderedHits"
+
+  string TTRHBuilder        =  "WithTrackAngle"
+
+  PSet OrderedHitsFactoryPSet = {
+    string ComponentName = "StandardHitTripletGenerator"
+    string SeedingLayers = "PixelLayerTriplets"
+    include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi"
+  }
+}
+
 PSet TSGFromPixelPairs = {
 
   string ComponentName = "TSGFromOrderedHits"
