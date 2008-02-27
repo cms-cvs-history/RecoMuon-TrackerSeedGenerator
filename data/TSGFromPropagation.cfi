@@ -8,7 +8,7 @@ PSet SeedGeneratorParameters = {
 
     double ErrorRescaling = 10.0
 
-    bool UpdateState = true
+    bool UpdateState = false
 
     bool UseSecondMeasurements = false
 
