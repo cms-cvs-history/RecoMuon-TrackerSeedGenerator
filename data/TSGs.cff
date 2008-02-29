@@ -47,7 +47,7 @@ PSet TSGForRoadSearchOI = {
     PSet errorMatrixPset ={
 	string action = "use"
 	bool atIP = true
-	use MuonErrorMatrixValues	
+	using MuonErrorMatrixValues	
     }
 }
 
@@ -63,7 +63,7 @@ PSet TSGForRoadSearchIOpxl = {
     PSet errorMatrixPset ={
 	string action = "use"
 	bool atIP = true
-	use MuonErrorMatrixValues	
+	using MuonErrorMatrixValues	
     }
 }
 
