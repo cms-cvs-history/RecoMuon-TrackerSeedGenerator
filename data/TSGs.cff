@@ -44,7 +44,11 @@ PSet TSGForRoadSearchOI = {
     string propagatorName = "SteppingHelixPropagatorAlong"
     string propagatorCompatibleName = "SteppingHelixPropagatorAny"
 
-    PSet errorMatrixPset ={}
+    PSet errorMatrixPset ={
+	string action = "use"
+	bool atIP = true
+	use MuonErrorMatrixValues	
+    }
 }
 
 PSet TSGForRoadSearchIOpxl = {
@@ -56,7 +60,11 @@ PSet TSGForRoadSearchIOpxl = {
     string propagatorName = "SteppingHelixPropagatorAlong"
     string propagatorCompatibleName = "SteppingHelixPropagatorAny"
 
-    PSet errorMatrixPset ={}
+    PSet errorMatrixPset ={
+	string action = "use"
+	bool atIP = true
+	use MuonErrorMatrixValues	
+    }
 }
 
 PSet TSGFromPropagation = {
