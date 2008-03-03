@@ -1,5 +1,6 @@
 include "RecoMuon/GlobalTrackingTools/data/MuonTrackingRegionCommon.cff"
 include "RecoMuon/TrackingTools/data/MuonErrorMatrixValues.cff"
+include "RecoMuon/TrackerSeedGenerator/data/TrackerSeedCleaner.cff"
 
 module hltL3TrajectorySeedFromL2 = TSGFromL2Muon {
     InputTag MuonCollectionLabel = hltL2Muons:UpdatedAtVtx
@@ -9,9 +10,11 @@ module hltL3TrajectorySeedFromL2 = TSGFromL2Muon {
     
  #ServiceParameters
     using MuonServiceProxy
-    
     using MuonTrackingRegionCommon
     
+    //using TrackerSeedCleanerCommon
+    PSet TrackerSeedCleaner = {}
+
  #defines a bunch of PSet with name the name of the Seed generator
  # to redefine do
  # replace hltL3TrajectorySeedFromL2.TSGFromPixelPairs.TTRHBuilder = ""

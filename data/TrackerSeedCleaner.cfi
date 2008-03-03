@@ -1,0 +1,6 @@
+block TrackerSeedCleanerCommon = {
+
+  PSet TrackerSeedCleaner = {	
+     InputTag beamSpot = "offlineBeamSpot"
+     string TTRHBuilder = "WithTrackAngle"
+  }
