@@ -4,3 +4,4 @@ block TrackerSeedCleanerCommon = {
      InputTag beamSpot = "offlineBeamSpot"
      string TTRHBuilder = "WithTrackAngle"
   }
+}
