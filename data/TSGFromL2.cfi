@@ -4,7 +4,7 @@ include "RecoMuon/TrackerSeedGenerator/data/TrackerSeedCleaner.cff"
 
 module hltL3TrajectorySeedFromL2 = TSGFromL2Muon {
     InputTag MuonCollectionLabel = hltL2Muons:UpdatedAtVtx
-    
+
  #this should not exist there !
     double PtCut = 1.0
     
@@ -19,7 +19,7 @@ module hltL3TrajectorySeedFromL2 = TSGFromL2Muon {
  # to redefine do
  # replace hltL3TrajectorySeedFromL2.TSGFromPixelPairs.TTRHBuilder = ""
     include  "RecoMuon/TrackerSeedGenerator/data/TSGs.cff"
-    string tkSeedGenerator = "TSGFromPixelPairs"
+    string tkSeedGenerator = "TSGFromCombinedHits"
  # to change the seed generator option do
  # it mimics a es_module usage that might be implemented later on
  # replace hltL3TrajectorySeedFromL2.tkSeedGenerator = "TSGForRoadSearchOI"
