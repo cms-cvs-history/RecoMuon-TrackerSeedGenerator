@@ -12,6 +12,8 @@ module hltL3TrajectorySeedFromL2 = TSGFromL2Muon {
     using MuonServiceProxy
     using MuonTrackingRegionCommon
     
+    untracked bool UseTFileService = false
+
     //using TrackerSeedCleanerCommon
     PSet TrackerSeedCleaner = {}
 
