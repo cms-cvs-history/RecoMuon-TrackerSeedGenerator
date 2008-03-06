@@ -63,6 +63,7 @@ PSet TSGFromPropagation = {
     string Propagator = "SmartPropagatorAnyOpposite"
     double MaxChi2 = 30.0
     double ErrorRescaling = 10.0
+    bool UseVertexState = true
     bool UpdateState = false
     bool UseSecondMeasurements = false
 }
