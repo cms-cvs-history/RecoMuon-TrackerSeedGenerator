@@ -6,7 +6,7 @@ PSet SeedGeneratorParameters = {
 
     double MaxChi2 = 30.0
 
-    double ErrorRescaling = 10.0
+    double ErrorRescaling = 3.0
 
     bool UseVertexState = true
 
