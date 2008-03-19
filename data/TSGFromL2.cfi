@@ -1,4 +1,5 @@
 include "RecoMuon/GlobalTrackingTools/data/MuonTrackingRegionCommon.cff"
+include "RecoMuon/TrackingTools/data/MuonServiceProxy.cff"
 include "RecoMuon/TrackingTools/data/MuonErrorMatrixValues.cff"
 include "RecoMuon/TrackerSeedGenerator/data/TrackerSeedCleaner.cff"
 
