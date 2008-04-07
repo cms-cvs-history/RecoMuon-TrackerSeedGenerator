@@ -1,3 +1,6 @@
+include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi"
+include "RecoMuon/TrackingTools/data/MuonErrorMatrixValues.cff"
+
 PSet TSGFromMixedPairs = {
   string ComponentName = "TSGFromOrderedHits"
   string TTRHBuilder        =  "WithTrackAngle"
@@ -13,7 +16,7 @@ PSet TSGFromPixelTriplets = {
   PSet OrderedHitsFactoryPSet = {
     string ComponentName = "StandardHitTripletGenerator"
     string SeedingLayers = "PixelLayerTriplets"
-    include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi"
+    using GeneratorPSetBlock
   }
 }
 
@@ -77,7 +80,7 @@ PSet TSGFromCombinedHits = {
 	PSet OrderedHitsFactoryPSet = {
 	    string ComponentName = "StandardHitTripletGenerator"
 	    string SeedingLayers = "PixelLayerTriplets"
-	    include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi"
+	    using GeneratorPSetBlock
 	}
     }
     PSet secondTSG = {
