@@ -1,12 +1,14 @@
-PSet SeedGeneratorParameters = {
+block TSGFromPixelPairsBlock = {
+  PSet SeedGeneratorParameters = {
 
-  string ComponentName = "TSGFromOrderedHits"
+    string ComponentName = "TSGFromOrderedHits"
 
-  string TTRHBuilder        =  "WithTrackAngle"
+    string TTRHBuilder        =  "WithTrackAngle"
 
-  PSet OrderedHitsFactoryPSet = {
-    string ComponentName = "StandardHitPairGenerator"
-    string SeedingLayers = "PixelLayerPairs"
+    PSet OrderedHitsFactoryPSet = {
+      string ComponentName = "StandardHitPairGenerator"
+      string SeedingLayers = "PixelLayerPairs"
+    }
   }
 } 
 
