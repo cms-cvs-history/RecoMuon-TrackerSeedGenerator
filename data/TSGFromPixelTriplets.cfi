@@ -1,3 +1,4 @@
+include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi"
 
 PSet SeedGeneratorParameters = {
 
@@ -8,7 +9,7 @@ PSet SeedGeneratorParameters = {
   PSet OrderedHitsFactoryPSet = {
     string ComponentName = "StandardHitTripletGenerator"
     string SeedingLayers = "PixelLayerTriplets"
-    include "RecoPixelVertexing/PixelTriplets/data/PixelTripletHLTGenerator.cfi" 
+    using GeneratorPSetBlock
   }
 
 } 
