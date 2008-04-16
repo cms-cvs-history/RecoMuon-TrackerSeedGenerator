@@ -18,7 +18,7 @@ PSet TSGFromPixelTriplets = {
   PSet OrderedHitsFactoryPSet = {
     string ComponentName = "StandardHitTripletGenerator"
     string SeedingLayers = "PixelLayerTriplets"
-    using PixelTripletHLTGenerator
+    PSet GeneratorPSet = { using PixelTripletHLTGenerator }
   }
 }
 
@@ -82,7 +82,7 @@ PSet TSGFromCombinedHits = {
 	PSet OrderedHitsFactoryPSet = {
 	    string ComponentName = "StandardHitTripletGenerator"
 	    string SeedingLayers = "PixelLayerTriplets"
-	    using PixelTripletHLTGenerator
+            PSet GeneratorPSet = { using PixelTripletHLTGenerator }
 	}
     }
     PSet secondTSG = {
