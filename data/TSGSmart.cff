@@ -26,7 +26,7 @@ PSet SeedGeneratorParameters = {
 	PSet OrderedHitsFactoryPSet = {
 	    string ComponentName = "StandardHitTripletGenerator"
 	    string SeedingLayers = "PixelLayerTriplets"
-	    using GeneratorPSetBlock
+	    using PixelTripletHLTGenerator
 	}
 	
     } 
