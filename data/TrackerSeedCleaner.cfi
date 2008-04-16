@@ -1,10 +1,12 @@
 block TrackerSeedCleanerCommon = {
 
   PSet TrackerSeedCleaner = {	
-     //InputTag beamSpot = "offlineBeamSpot"
-     //string TTRHBuilder = "WithTrackAngle"
+     InputTag beamSpot = "offlineBeamSpot"
+     string TTRHBuilder = "WithTrackAngle"
+     bool directionCleaner =  false
+     bool cleanerFromSharedHits =true 
 
      # should be true only for tests
-     //bool ptCleaner =  false  
+     bool ptCleaner =  false  
   }
 }
