@@ -71,6 +71,12 @@ PSet TSGFromPropagation = {
     bool UseVertexState = true
     bool UpdateState = false
     bool UseSecondMeasurements = false
+
+    PSet errorMatrixPset ={
+        string action = "use"
+        bool atIP = true
+        using MuonErrorMatrixValues
+    }
 }
 
 PSet TSGFromCombinedHits = {
