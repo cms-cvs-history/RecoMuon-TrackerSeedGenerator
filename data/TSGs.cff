@@ -81,7 +81,7 @@ PSet TSGFromPropagation = {
 
 PSet TSGFromCombinedHits = {
     string ComponentName = "CombinedTSG"
-    vstring PSetNames = { "firstTSG", "secondTSG", "thirdTSG" }
+    vstring PSetNames = { "firstTSG", "secondTSG" }
     PSet firstTSG = {
 	string ComponentName = "TSGFromOrderedHits"
 	string TTRHBuilder        =  "WithTrackAngle"

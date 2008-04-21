@@ -16,8 +16,7 @@ module hltL3TrajectorySeedFromL2 = TSGFromL2Muon {
     
     untracked bool UseTFileService = false
 
-    //using TrackerSeedCleanerCommon
-    PSet TrackerSeedCleaner = {}
+    using TrackerSeedCleanerCommon
 
  #defines a bunch of PSet with name the name of the Seed generator
  # to redefine do
