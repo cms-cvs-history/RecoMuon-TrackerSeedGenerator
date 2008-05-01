@@ -73,9 +73,6 @@ PSet TSGFromPropagation = {
     bool UseSecondMeasurements = false
 
     PSet errorMatrixPset ={
-        string action = "use"
-        bool atIP = true
-        using MuonErrorMatrixValues
     }
 }
 
