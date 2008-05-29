@@ -14,6 +14,8 @@ PSet SeedGeneratorParameters = {
 
     bool UseSecondMeasurements = false
 
+    bool SelectState = false
+
     PSet errorMatrixPset ={}
 
 } 

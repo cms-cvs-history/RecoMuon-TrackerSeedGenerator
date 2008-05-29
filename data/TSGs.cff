@@ -71,7 +71,7 @@ PSet TSGFromPropagation = {
     bool UseVertexState = true
     bool UpdateState = false
     bool UseSecondMeasurements = false
-
+    bool SelectState = true
     PSet errorMatrixPset ={
     }
 }
