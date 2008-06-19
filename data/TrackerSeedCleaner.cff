@@ -1,3 +1,2 @@
-include "MagneticField/Engine/data/volumeBasedMagneticField.cfi"
   
 include "RecoMuon/TrackerSeedGenerator/data/TrackerSeedCleaner.cfi" 
