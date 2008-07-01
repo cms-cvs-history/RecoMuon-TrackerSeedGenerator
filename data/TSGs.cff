@@ -62,11 +62,14 @@ PSet TSGFromPropagation = {
     string ComponentName = "TSGFromPropagation"
     string Propagator = "SmartPropagatorAnyOpposite"
     double MaxChi2 = 30.0
-    double ErrorRescaling = 3.0
-    bool UseVertexState = true
-    bool UpdateState = false
+    double ErrorRescaling = 5.0
+    bool UseVertexState = false
+    bool UpdateState = true
+    bool SelectState = false
     bool UseSecondMeasurements = false
+    PSet errorMatrixPset = {}
 }
+
 
 PSet TSGFromCombinedHits = {
     string ComponentName = "CombinedTSG"
