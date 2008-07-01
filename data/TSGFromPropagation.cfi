@@ -6,13 +6,16 @@ PSet SeedGeneratorParameters = {
 
     double MaxChi2 = 30.0
 
-    double ErrorRescaling = 3.0
+    double ErrorRescaling = 5.0
 
-    bool UseVertexState = true
+    bool UseVertexState = false
 
-    bool UpdateState = false
+    bool UpdateState = true
 
     bool UseSecondMeasurements = false
 
-} 
+    bool SelectState = false
 
+    PSet errorMatrixPset ={}
+
+} 

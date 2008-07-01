@@ -5,8 +5,8 @@
  *  Tracker Seed Generator by propagating and updating a standAlone muon
  *  to the first 2 (or 1) rechits it meets in tracker system 
  *
- *  $Date: 2008/02/13 18:44:28 $
- *  $Revision: 1.3 $
+ *  $Date: 2008/05/29 15:43:53 $
+ *  $Revision: 1.10 $
  *  \author Chang Liu - Purdue University 
  */
 
@@ -15,6 +15,8 @@
 #include "TrackingTools/TrajectoryState/interface/FreeTrajectoryState.h"
 #include "RecoMuon/TrackingTools/interface/MuonServiceProxy.h"
 #include "TrackingTools/PatternTools/interface/TrajectoryMeasurement.h"
+#include "TrackingTools/PatternTools/interface/TrajectoryStateUpdator.h"
+#include "RecoMuon/TrackingTools/interface/MuonErrorMatrix.h"
 
 class LayerMeasurements;
 class Chi2MeasurementEstimator;
@@ -27,18 +29,22 @@ class TrajectoryStateTransform;
 class TSGFromPropagation : public TrackerSeedGenerator {
 
 public:
+  /// constructor
   TSGFromPropagation(const edm::ParameterSet &pset);
 
   TSGFromPropagation(const edm::ParameterSet& par, const MuonServiceProxy*);
 
+  /// destructor
   virtual ~TSGFromPropagation();
 
+  /// generate seed(s) for a track
   void  trackerSeeds(const TrackCand&, const TrackingRegion&, std::vector<TrajectorySeed>&);
     
+  /// initialize
   void init(const MuonServiceProxy*);
 
+  /// set an event
   void setEvent(const edm::Event&);
-
 
 private:
 
@@ -48,32 +54,62 @@ private:
 
   const LayerMeasurements* tkLayerMeasurements() const { return theTkLayerMeasurements; } 
 
+  const TrajectoryStateUpdator* updator() const {return theUpdator;}
+
   const Chi2MeasurementEstimator* estimator() const { return theEstimator; }
 
   edm::ESHandle<Propagator> propagator() const {return theService->propagator(thePropagatorName); }
 
+  /// create a hitless seed from a trajectory state
   TrajectorySeed createSeed(const TrajectoryStateOnSurface&, const DetId&) const;
 
-  TrajectorySeed createSeed(const TrajectoryMeasurement&) const;
+  /// create a seed from a trajectory state
+  TrajectorySeed createSeed(const TrajectoryStateOnSurface& tsos, const edm::OwnVector<TrackingRecHit>& container, const DetId& id) const;
 
+  /// select by comparing likely measurements
   void selectMeasurements(std::vector<TrajectoryMeasurement>&) const;
 
+  /// select valid measurements
   void validMeasurements(std::vector<TrajectoryMeasurement>&) const;
 
+  /// look for measurements on the first compatible layer (faster way)
   std::vector<TrajectoryMeasurement> findMeasurements_new(const DetLayer*, const TrajectoryStateOnSurface&) const;
 
+  /// look for measurements on the first compatible layer
   std::vector<TrajectoryMeasurement> findMeasurements(const DetLayer*, const TrajectoryStateOnSurface&) const;
 
+  /// 
   void findSecondMeasurements(std::vector<TrajectoryMeasurement>&, const std::vector<const DetLayer*>& ) const;
 
-  struct IncreasingEstimate{
+  /// check some quantity and beam-spot compatibility and decide to continue
+  bool passSelection(const TrajectoryStateOnSurface&) const;
+
+  /// adjust the error matrix of the FTS
+  void adjust(FreeTrajectoryState &) const;
+
+  /// adjust the error matrix of the TSOS
+  void adjust(TrajectoryStateOnSurface &) const;
+
+  double dxyDis(const TrajectoryStateOnSurface& tsos) const;
+
+  double zDis(const TrajectoryStateOnSurface& tsos) const;
+
+  struct increasingEstimate{
     bool operator()(const TrajectoryMeasurement& lhs,
                     const TrajectoryMeasurement& rhs) const{ 
-    return lhs.estimate() < rhs.estimate();
+      return lhs.estimate() < rhs.estimate();
+    }
+  };
+
+  struct isInvalid {
+    bool operator()(const TrajectoryMeasurement& measurement) {
+      return ( ((measurement).recHit() == 0) || !((measurement).recHit()->isValid()) || !((measurement).updatedState().isValid()) ); 
     }
   };
 
   unsigned long long theCacheId_MT;
+
+  std::string theCategory;
 
   const LayerMeasurements*  theTkLayerMeasurements;
 
@@ -84,6 +120,8 @@ private:
   const DirectTrackerNavigation* theNavigation;
 
   const MuonServiceProxy* theService;
+
+  const TrajectoryStateUpdator* theUpdator;
 
   const Chi2MeasurementEstimator* theEstimator;
 
@@ -101,7 +139,13 @@ private:
 
   bool theUseSecondMeasurementsFlag;
 
+  bool theSelectStateFlag;
+
   std::string thePropagatorName;
+
+  MuonErrorMatrix * theErrorMatrixAdjuster;
+
+  bool theAdjustAtIp;
 
 };
 
