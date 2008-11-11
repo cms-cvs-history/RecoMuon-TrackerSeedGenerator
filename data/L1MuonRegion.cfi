@@ -1,8 +1,0 @@
-PSet RegionPSet = {
-  double ptMin = 10.0
-  double originRadius = 0.1
-  double originXPos = 0.0
-  double originYPos = 0.0
-  double originZPos = 0.0
-  double originHalfLength = 15.9
-}
