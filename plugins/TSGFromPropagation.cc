@@ -2,8 +2,8 @@
 
 /** \class TSGFromPropagation
  *
- *  $Date: 2008/11/06 01:47:00 $
- *  $Revision: 1.31 $
+ *  $Date: 2008/11/05 20:58:55 $
+ *  $Revision: 1.29.2.1 $
  *  \author Chang Liu - Purdue University 
  */
 
@@ -55,7 +55,7 @@ TSGFromPropagation::~TSGFromPropagation()
 
 void TSGFromPropagation::trackerSeeds(const TrackCand& staMuon, const TrackingRegion& region, std::vector<TrajectorySeed> & result) {
 
-  if ( theResetMethod == "discrete" ) getRescalingFactor(staMuon);
+  if ( theResetErrorFlag ) rescalingFactor(staMuon);
 
   TrajectoryStateOnSurface staState = outerTkState(staMuon);
 
@@ -142,19 +142,9 @@ void TSGFromPropagation::init(const MuonServiceProxy* service) {
 
   theMaxChi2 = theConfig.getParameter<double>("MaxChi2");
 
-  theFixedErrorRescaling = theConfig.getParameter<double>("ErrorRescaling");
+  theErrorRescaling = theConfig.getParameter<double>("ErrorRescaling");
 
-  theFlexErrorRescaling = 1.0;
-
-  theResetMethod = theConfig.getParameter<std::string>("ResetMethod");
-
-  if (theResetMethod != "discrete" && theResetMethod != "fixed" && theResetMethod != "matrix"  ) {
-    edm::LogError("TSGFromPropagation") 
-      <<"Wrong error rescaling method: "<<theResetMethod <<"\n"
-      <<"Possible choices are: discrete, fixed, matrix.\n"
-      <<"Use discrete method" <<std::endl;
-    theResetMethod = "discrete"; 
-  }
+  theResetErrorFlag = theConfig.getParameter<bool>("ResetRescaling");
 
   theEstimator = new Chi2MeasurementEstimator(theMaxChi2);
 
@@ -170,6 +160,8 @@ void TSGFromPropagation::init(const MuonServiceProxy* service) {
 
   theUpdateStateFlag = theConfig.getParameter<bool>("UpdateState");
 
+  theUseSecondMeasurementsFlag = theConfig.getParameter<bool>("UseSecondMeasurements");
+
   theSelectStateFlag = theConfig.getParameter<bool>("SelectState");
 
   theUpdator = new KFUpdator();
@@ -179,7 +171,7 @@ void TSGFromPropagation::init(const MuonServiceProxy* service) {
   theSigmaZ = theConfig.getParameter<double>("SigmaZ");
 
   edm::ParameterSet errorMatrixPset = theConfig.getParameter<edm::ParameterSet>("errorMatrixPset");
-  if ( theResetMethod == "matrix" && !errorMatrixPset.empty()){
+  if (!errorMatrixPset.empty()){
     theAdjustAtIp = errorMatrixPset.getParameter<bool>("atIP");
     theErrorMatrixAdjuster = new MuonErrorMatrix(errorMatrixPset);
   } else {
@@ -285,6 +277,11 @@ TrajectorySeed TSGFromPropagation::createSeed(const TrajectoryStateOnSurface& ts
 
 }
 
+/// further clean measurements
+void TSGFromPropagation::selectMeasurements(std::vector<TrajectoryMeasurement>& tms) const {
+
+}
+
 
 void TSGFromPropagation::validMeasurements(std::vector<TrajectoryMeasurement>& tms) const {
 
@@ -326,6 +323,10 @@ std::vector<TrajectoryMeasurement> TSGFromPropagation::findMeasurements(const De
   return result;
 }
 
+void TSGFromPropagation::findSecondMeasurements(std::vector<TrajectoryMeasurement>& tms, const std::vector<const DetLayer*>& dls) const {
+
+}
+
 bool TSGFromPropagation::passSelection(const TrajectoryStateOnSurface& tsos) const {
   if ( !theSelectStateFlag ) return true;
   else {
@@ -349,11 +350,11 @@ double TSGFromPropagation::zDis(const TrajectoryStateOnSurface& tsos) const {
   return tsos.globalPosition().z() - tsos.globalPosition().perp() * tsos.globalMomentum().z()/tsos.globalMomentum().perp();
 }
 
-void TSGFromPropagation::getRescalingFactor(const TrackCand& staMuon) {
+void TSGFromPropagation::rescalingFactor(const TrackCand& staMuon) {
     float pt = (staMuon.second)->pt();
-    if ( pt < 13.0 ) theFlexErrorRescaling = 3; 
-    else if ( pt < 30.0 ) theFlexErrorRescaling = 5;
-    else theFlexErrorRescaling = 10;
+    if ( pt < 13.0 ) theErrorRescaling = 3; 
+    else if ( pt < 30.0 ) theErrorRescaling = 5;
+    else theErrorRescaling = 10;
     return;
 }
 
@@ -361,14 +362,8 @@ void TSGFromPropagation::getRescalingFactor(const TrackCand& staMuon) {
 void TSGFromPropagation::adjust(FreeTrajectoryState & state) const {
 
   //rescale the error
-  if ( theResetMethod == "discreate" ) {
-     state.rescaleError(theFlexErrorRescaling);
-     return;
-  }
-
-  //rescale the error
-  if ( theResetMethod == "fixed" || !theErrorMatrixAdjuster) {
-     state.rescaleError(theFixedErrorRescaling);
+  if ( !theErrorMatrixAdjuster) {
+     state.rescaleError(theErrorRescaling);
      return;
   }
 
@@ -382,14 +377,8 @@ void TSGFromPropagation::adjust(FreeTrajectoryState & state) const {
 
 void TSGFromPropagation::adjust(TrajectoryStateOnSurface & state) const {
 
-  //rescale the error
-  if ( theResetMethod == "discreate" ) {
-     state.rescaleError(theFlexErrorRescaling);
-     return;
-  }
-
-  if ( theResetMethod == "fixed" || !theErrorMatrixAdjuster) {
-     state.rescaleError(theFixedErrorRescaling);
+  if ( !theErrorMatrixAdjuster) {
+     state.rescaleError(theErrorRescaling);
      return;
   }
 

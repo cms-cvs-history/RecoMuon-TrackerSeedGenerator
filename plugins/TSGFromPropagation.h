@@ -5,8 +5,8 @@
  *  Tracker Seed Generator by propagating and updating a standAlone muon
  *  to the first 2 (or 1) rechits it meets in tracker system 
  *
- *  $Date: 2008/11/06 01:46:57 $
- *  $Revision: 1.11 $
+ *  $Date: 2008/11/05 20:58:50 $
+ *  $Revision: 1.10.2.1 $
  *  \author Chang Liu - Purdue University 
  */
 
@@ -67,6 +67,9 @@ private:
   /// create a seed from a trajectory state
   TrajectorySeed createSeed(const TrajectoryStateOnSurface& tsos, const edm::OwnVector<TrackingRecHit>& container, const DetId& id) const;
 
+  /// select by comparing likely measurements
+  void selectMeasurements(std::vector<TrajectoryMeasurement>&) const;
+
   /// select valid measurements
   void validMeasurements(std::vector<TrajectoryMeasurement>&) const;
 
@@ -76,10 +79,13 @@ private:
   /// look for measurements on the first compatible layer
   std::vector<TrajectoryMeasurement> findMeasurements(const DetLayer*, const TrajectoryStateOnSurface&) const;
 
+  /// 
+  void findSecondMeasurements(std::vector<TrajectoryMeasurement>&, const std::vector<const DetLayer*>& ) const;
+
   /// check some quantity and beam-spot compatibility and decide to continue
   bool passSelection(const TrajectoryStateOnSurface&) const;
 
-  void getRescalingFactor(const TrackCand& staMuon);
+  void rescalingFactor(const TrackCand& staMuon);
 
   /// adjust the error matrix of the FTS
   void adjust(FreeTrajectoryState &) const;
@@ -127,15 +133,15 @@ private:
 
   double theMaxChi2;
 
-  double theFlexErrorRescaling;
-
-  double theFixedErrorRescaling;
+  double theErrorRescaling;
 
   bool theUseVertexStateFlag;
 
   bool theUpdateStateFlag;
 
-  std::string theResetMethod; 
+  bool theResetErrorFlag;
+
+  bool theUseSecondMeasurementsFlag;
 
   bool theSelectStateFlag;
 
